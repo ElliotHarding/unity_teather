@@ -337,6 +337,8 @@ MonoBehaviour:
   m_ball1: {fileID: 1705977758}
   m_ball2: {fileID: 1873839808}
   m_teather: {fileID: 26975313}
+  m_rotationSpeed: 60
+  m_clickFrequency: 0.5
 --- !u!1 &1705977758
 GameObject:
   m_ObjectHideFlags: 0
