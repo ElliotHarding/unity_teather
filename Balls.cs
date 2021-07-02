@@ -14,19 +14,23 @@ public class Balls : MonoBehaviour
     //Balls rotation
     public float m_rotationSpeed = 60f;
     public float m_clickFrequency = 0.5f;
-    private float m_timeSinceLastClick = 1f;
+    private float m_nextClickTime = 1f;
     private bool m_ball1Rotating = true;
 
     //Checking if mouse is clicking on UI
     public EventSystem m_eventSystem;
     public GraphicRaycaster m_raycaster;
 
+    void Start()
+    {
+        m_nextClickTime = Time.time;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        //Handle click/touch input
-        m_timeSinceLastClick += Time.deltaTime;
-        if (m_timeSinceLastClick > m_clickFrequency)
+        //Mouse/touch input
+        if (Time.time > m_nextClickTime)
         {
             //Handle screen touches
             if (Input.touchCount > 0)
@@ -37,10 +41,10 @@ public class Balls : MonoBehaviour
                     if (!mouseOnUI(new Vector3(touch.position.x, touch.position.y)))
                     {
                         m_ball1Rotating = !m_ball1Rotating;
-                        m_timeSinceLastClick = 0;
+                        m_nextClickTime = Time.time + m_clickFrequency;
                         break;
                     }
-                }                
+                }
             }
 
             //Handle mouse clicks
@@ -50,7 +54,7 @@ public class Balls : MonoBehaviour
                 if (!mouseOnUI(Input.mousePosition))
                 {
                     m_ball1Rotating = !m_ball1Rotating;
-                    m_timeSinceLastClick = 0;
+                    m_nextClickTime = Time.time + m_clickFrequency;
                 }                   
             }
         }      

@@ -814,7 +814,7 @@ MonoBehaviour:
   m_ball2: {fileID: 1161533271}
   m_teather: {fileID: 26975313}
   m_rotationSpeed: 60
-  m_clickFrequency: 0.5
+  m_clickFrequency: 0.4
   m_eventSystem: {fileID: 988948438}
   m_raycaster: {fileID: 825100425}
 --- !u!1 &1161533271
