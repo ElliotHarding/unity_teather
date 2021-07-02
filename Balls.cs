@@ -13,8 +13,8 @@ public class Balls : MonoBehaviour
 
     //Balls rotation
     public float m_rotationSpeed = 60f;
-    public float m_clickFrequency = 0.5f;
-    private float m_nextClickTime = 1f;
+    private bool m_bTouchOccuring = false;
+    private bool m_bClickOccuring = false;
     private bool m_ball1Rotating = true;
 
     //Checking if mouse is clicking on UI
@@ -22,42 +22,45 @@ public class Balls : MonoBehaviour
     public GraphicRaycaster m_raycaster;
 
     void Start()
-    {
-        m_nextClickTime = Time.time;
+    { 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Mouse/touch input
-        if (Time.time > m_nextClickTime)
+        //Handle screen touches
+        if (Input.touchCount > 0 && !m_bTouchOccuring)
         {
-            //Handle screen touches
-            if (Input.touchCount > 0)
+            m_bTouchOccuring = true;
+            foreach (Touch touch in Input.touches)
             {
-                foreach (Touch touch in Input.touches)
-                {
-                    //Make sure isnt clicking on UI
-                    if (!mouseOnUI(new Vector3(touch.position.x, touch.position.y)))
-                    {
-                        m_ball1Rotating = !m_ball1Rotating;
-                        m_nextClickTime = Time.time + m_clickFrequency;
-                        break;
-                    }
-                }
-            }
-
-            //Handle mouse clicks
-            if (Input.GetMouseButton(0))
-            {
-                //Make sure mouse isnt clicking on UI
-                if (!mouseOnUI(Input.mousePosition))
+                //Make sure isnt clicking on UI
+                if (!mouseOnUI(new Vector3(touch.position.x, touch.position.y)))
                 {
                     m_ball1Rotating = !m_ball1Rotating;
-                    m_nextClickTime = Time.time + m_clickFrequency;
-                }                   
+                    break;
+                }
             }
-        }      
+        }
+        else if(Input.touchCount == 0)
+        {
+            m_bTouchOccuring = false;
+        }
+
+        //Handle mouse clicks
+        if (Input.GetMouseButton(0) && !m_bClickOccuring)
+        {
+            m_bClickOccuring = true;
+            //Make sure mouse isnt clicking on UI
+            if (!mouseOnUI(Input.mousePosition))
+            {
+                m_ball1Rotating = !m_ball1Rotating;
+            }
+        }
+        else if(!Input.GetMouseButton(0))
+        {
+            m_bClickOccuring = false;
+        }
 
         //Handle rotation of balls
         if (m_ball1Rotating)
