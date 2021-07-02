@@ -13,7 +13,6 @@ public class Balls : MonoBehaviour
 
     //Balls rotation
     public float m_rotationSpeed = 60f;
-    private bool m_bTouchOccuring = false;
     private bool m_bClickOccuring = false;
     private bool m_ball1Rotating = true;
 
@@ -21,32 +20,10 @@ public class Balls : MonoBehaviour
     public EventSystem m_eventSystem;
     public GraphicRaycaster m_raycaster;
 
-    void Start()
-    { 
-    }
 
     // Update is called once per frame
     void Update()
     {
-        //Handle screen touches
-        if (Input.touchCount > 0 && !m_bTouchOccuring)
-        {
-            m_bTouchOccuring = true;
-            foreach (Touch touch in Input.touches)
-            {
-                //Make sure isnt clicking on UI
-                if (!mouseOnUI(new Vector3(touch.position.x, touch.position.y)))
-                {
-                    m_ball1Rotating = !m_ball1Rotating;
-                    break;
-                }
-            }
-        }
-        else if(Input.touchCount == 0)
-        {
-            m_bTouchOccuring = false;
-        }
-
         //Handle mouse clicks
         if (Input.GetMouseButton(0) && !m_bClickOccuring)
         {
