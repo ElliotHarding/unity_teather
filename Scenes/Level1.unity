@@ -340,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_teather: {fileID: 26975313}
   m_zPosition: -1
-  m_moveSpeed: 1
+  m_moveSpeed: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
