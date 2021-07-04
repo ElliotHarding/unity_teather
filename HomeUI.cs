@@ -7,6 +7,6 @@ public class HomeUI : MonoBehaviour
 {
     public void StartButton()//cant call it start
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Levels");
     }
 }
