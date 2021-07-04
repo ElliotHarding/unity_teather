@@ -20,6 +20,8 @@ public class Balls : MonoBehaviour
     public EventSystem m_eventSystem;
     public GraphicRaycaster m_raycaster;
 
+    //UI
+    public GameObject m_gameOverPanel;
 
     // Update is called once per frame
     void Update()
@@ -74,5 +76,11 @@ public class Balls : MonoBehaviour
         m_raycaster.Raycast(pointerEventData, results);
 
         return results.Count != 0;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        m_gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }
