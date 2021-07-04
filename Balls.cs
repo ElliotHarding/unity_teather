@@ -22,6 +22,7 @@ public class Balls : MonoBehaviour
 
     //UI
     public GameObject m_gameOverPanel;
+    public GameObject m_levelWonPanel;
 
     // Update is called once per frame
     void Update()
@@ -80,7 +81,15 @@ public class Balls : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        m_gameOverPanel.SetActive(true);
-        Time.timeScale = 0;
+        if(col.gameObject.name.Contains("wall"))
+        {
+            m_gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else if(col.gameObject.name.Contains("Goal"))
+        {
+            m_levelWonPanel.SetActive(true);
+            Time.timeScale = 0;
+        }       
     }
 }

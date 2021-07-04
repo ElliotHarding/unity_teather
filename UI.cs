@@ -36,4 +36,9 @@ public class UI : MonoBehaviour
             m_pauseButtonImage.sprite = m_pauseSprite;
         }
     }
+
+    public void NextLevel()
+    {
+
+    }
 }
