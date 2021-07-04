@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Home()
@@ -37,8 +37,9 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void NextLevel()
+    public void NextLevel(int level)
     {
-
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Level" + level.ToString());
     }
 }
