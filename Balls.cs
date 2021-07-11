@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Balls : MonoBehaviour
 {
@@ -90,6 +91,18 @@ public class Balls : MonoBehaviour
         {
             m_levelWonPanel.SetActive(true);
             Time.timeScale = 0;
+
+            //get current level number
+            string sceneName = SceneManager.GetActiveScene().name;
+            string levelNum = sceneName.Substring(5, sceneName.Length - 5);
+            int iLevelNum = int.Parse(levelNum);
+
+            //compare current level number with number of completed levels, if more then set new completed levels
+            int completedLevels = PlayerPrefs.GetInt("CompletedLevels", 0);
+            if(iLevelNum > completedLevels)
+            {
+                PlayerPrefs.SetInt("CompletedLevels", iLevelNum);
+            }
         }       
     }
 }
