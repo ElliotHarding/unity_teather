@@ -8,7 +8,7 @@ public class LevelCreator : MonoBehaviour
     public GameObject m_selectedGameObject;
     bool m_bIsDragging = false;
     
-    public List<GameObject> m_gameObejcts = new List<GameObject>();
+    public List<GameObject> m_gameObjects = new List<GameObject>();
 
     //Panning
     public float m_panSpeed = 100;
@@ -18,7 +18,6 @@ public class LevelCreator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetMouseButton(0))
         {
             Vector3 touchPos = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,7 +56,21 @@ public class LevelCreator : MonoBehaviour
             m_bIsDragging = false;
             m_bIsPanning = false;
         }
+    }
 
-        
+    public void DeleteSelected()
+    {
+        m_gameObjects.Remove(m_selectedGameObject);
+        Destroy(m_selectedGameObject);
+    }
+
+    public void RotateRightSelected()
+    {
+        m_selectedGameObject.transform.Rotate(-Vector3.forward * 10);
+    }
+
+    public void RotateLeftSelected()
+    {
+        m_selectedGameObject.transform.Rotate(Vector3.forward * 10);
     }
 }
