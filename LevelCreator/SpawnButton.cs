@@ -11,6 +11,7 @@ public class SpawnButton : MonoBehaviour, IPointerDownHandler
     {
         Vector3 worldPosition = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameObject newSpawnObject = Instantiate(m_spawnObject, new Vector3(worldPosition.x, worldPosition.y, 0), Quaternion.identity);
-        newSpawnObject.GetComponent<Draggable>().m_canDrag = true;
+        newSpawnObject.GetComponent<Draggable>().m_canDrag = true; 
+        newSpawnObject.GetComponent<Draggable>().m_isDragging = true;
     }
 }
