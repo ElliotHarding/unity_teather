@@ -337,6 +337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_selectedGameObject: {fileID: 0}
   m_gameObejcts: []
+  m_panSpeed: 100
 --- !u!4 &985303096
 Transform:
   m_ObjectHideFlags: 0
