@@ -5,6 +5,8 @@ using System.IO;
 
 public class LevelCreator : MonoBehaviour
 {
+    public static string m_levelName;
+
     public List<GameObject> m_gameObjects = new List<GameObject>();
 
     //Dragging
@@ -15,6 +17,11 @@ public class LevelCreator : MonoBehaviour
     public float m_panSpeed = 100;
     bool m_bIsPanning = false;
     Vector3 m_oldPanPosition;
+
+    void Start()
+    {
+        Debug.Log(m_levelName);
+    }
 
     // Update is called once per frame
     void Update()

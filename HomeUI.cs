@@ -9,4 +9,9 @@ public class HomeUI : MonoBehaviour
     {
         SceneManager.LoadScene("Levels");
     }
+
+    public void CustomLevels()
+    {
+        SceneManager.LoadScene("CustomLevels");
+    }
 }
