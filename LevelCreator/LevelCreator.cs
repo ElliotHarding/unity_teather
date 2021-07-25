@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class LevelCreator : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class LevelCreator : MonoBehaviour
 
     //Dragging
     public GameObject m_selectedGameObject;
-    bool m_bIsDragging = false;
+    public bool m_bIsDragging = false;
    
     //Panning
     public float m_panSpeed = 100;
@@ -36,13 +37,11 @@ public class LevelCreator : MonoBehaviour
                 {
                     m_selectedGameObject = collider.gameObject;
                     m_bIsDragging = true;
-                    //m_bIsPanning = false;
                     m_selectedGameObject.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
                 }
                 else
                 {
                     m_bIsPanning = true;
-                    //m_bIsDragging = false;
                     m_oldPanPosition = touchPos;
                 }                
             }
@@ -78,5 +77,28 @@ public class LevelCreator : MonoBehaviour
         {
             m_selectedGameObject.transform.Rotate(Vector3.forward * 10);
         }
+    }
+
+    public void SaveGameObjects()
+    {
+        string path = Application.persistentDataPath + "/createdLevel.txt";
+
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, true);
+
+        foreach(GameObject go in m_gameObjects)
+        {           
+            writer.WriteLine(go.name + ":" + go.transform.position.x + ":" + go.transform.position.y + ":" + go.transform.localRotation.eulerAngles.z);
+        }       
+
+        writer.Close();
+
+        /*
+        string path2 = Application.persistentDataPath + "/test.txt";
+        //Read the text from directly from the test.txt file
+        StreamReader reader = new StreamReader(path2);
+        Debug.Log("output of file:");
+        Debug.Log(reader.ReadToEnd());
+        reader.Close();*/
     }
 }
