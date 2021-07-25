@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LevelCreator : MonoBehaviour
 {
+    public List<GameObject> m_gameObjects = new List<GameObject>();
+
     //Dragging
     public GameObject m_selectedGameObject;
     bool m_bIsDragging = false;
-    
-    public List<GameObject> m_gameObjects = new List<GameObject>();
-
+   
     //Panning
     public float m_panSpeed = 100;
     bool m_bIsPanning = false;
@@ -36,13 +36,13 @@ public class LevelCreator : MonoBehaviour
                 {
                     m_selectedGameObject = collider.gameObject;
                     m_bIsDragging = true;
-                    m_bIsPanning = false;
+                    //m_bIsPanning = false;
                     m_selectedGameObject.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
                 }
                 else
                 {
                     m_bIsPanning = true;
-                    m_bIsDragging = false;
+                    //m_bIsDragging = false;
                     m_oldPanPosition = touchPos;
                 }                
             }
@@ -66,11 +66,17 @@ public class LevelCreator : MonoBehaviour
 
     public void RotateRightSelected()
     {
-        m_selectedGameObject.transform.Rotate(-Vector3.forward * 10);
+        if(m_selectedGameObject)
+        {
+            m_selectedGameObject.transform.Rotate(-Vector3.forward * 10);
+        }
     }
 
     public void RotateLeftSelected()
     {
-        m_selectedGameObject.transform.Rotate(Vector3.forward * 10);
+        if (m_selectedGameObject)
+        {
+            m_selectedGameObject.transform.Rotate(Vector3.forward * 10);
+        }
     }
 }
