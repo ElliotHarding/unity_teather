@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8040095423297600927}
   - component: {fileID: 8040095423297600926}
   - component: {fileID: 8040095423297600925}
-  - component: {fileID: -3871337341039432865}
   - component: {fileID: 6314544026634297906}
   m_Layer: 0
   m_Name: wall
@@ -118,20 +117,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &-3871337341039432865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8040095423297600924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f6701a0d59d6264b8694bceaf3b28f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_canDrag: 0
-  m_isDragging: 0
 --- !u!61 &6314544026634297906
 BoxCollider2D:
   m_ObjectHideFlags: 0
