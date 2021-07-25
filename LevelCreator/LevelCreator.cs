@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelCreator : MonoBehaviour
 {
     public GameObject m_selectedGameObject;
+    bool m_bIsDragging = false;
     public List<GameObject> m_gameObejcts = new List<GameObject>();
 
     // Update is called once per frame
@@ -13,12 +14,27 @@ public class LevelCreator : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Vector3 touchPos = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D collider = Physics2D.OverlapCircle(touchPos, 1);
 
-            if(collider)
+            if(!m_bIsDragging)
             {
-                collider.gameObject.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
+                Collider2D collider = Physics2D.OverlapCircle(touchPos, 1);
+                if (collider)
+                {
+                    m_selectedGameObject = collider.gameObject;
+                    m_bIsDragging = true;
+                    m_selectedGameObject.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
+                }
             }
-        }        
+            else
+            {
+                m_selectedGameObject.transform.position = new Vector3(touchPos.x, touchPos.y, 0);
+            }
+        }     
+        else
+        {
+            m_bIsDragging = false;
+        }
+
+        
     }
 }
